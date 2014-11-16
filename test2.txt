@@ -1,0 +1,70 @@
+module list
+
+abstract sig State {}
+
+sig List {
+	header: State -> Node
+}
+
+sig Node {
+	link: State -> Node,
+	elem: State -> Int
+}
+
+fact CardinalityConstraints {
+	all t: State {
+		{all l: List | lone t.(l.header)}
+		{all n: Node | lone t.(n.link)}
+		{all n: Node | one t.(n.elem)}
+	}
+}
+
+pred Loop(This: List, t: State) {
+	no t.(This.header) ||
+	one o: (t.(This.header)).*({ n: Node, m: Node | (n -> t -> m) in link}) | t.(o.link) = o
+}
+
+pred Unique(This: List, t: State) {
+	all n, m: Node| t.(n.elem) = t.(m.elem) implies n = m
+}
+
+pred RepOk(This: List, t: State) {
+	Loop[This, t]
+	Unique[This, t]
+}
+
+pred Add(This: List, x: Int, pre: State, post: State) {
+	pre != post
+	RepOk[This, pre]
+
+	pre.((pre.(This.header).*({ n: Node, m: Node | (n -> pre -> m) in link})).elem) in post.((post.(This.header).*({ n: Node, m: Node | (n -> post -> m) in link})).elem)
+	post.((post.(This.header).*({ n: Node, m: Node | (n -> post -> m) in link})).elem) = pre.((pre.(This.header).*({ n: Node, m: Node | (n -> pre -> m) in link})).elem) + x
+	
+	RepOk[This, post]
+}
+
+pred DefaultFieldValues(n: Node, t: State) {
+	no t.(n.link)
+	t.(n.elem) = 0
+}
+
+pred ConstantFieldValues(n: Node, t1: State, t2: State) {
+	t1.(n.link) = t2.(n.link)
+	t1.(n.elem) = t2.(n.elem)
+}
+
+pred AddFrame(This: List, x: Int, pre: State, post: State) {
+// nodes not reachable from This.header in pre have default field values in pre
+	all o: Node {
+		o !in pre.(This.header).*({ n: Node, m: Node | (n -> pre -> m) in link}) implies DefaultFieldValues[o, pre]
+	}
+	Add[This, x, pre, post]
+// nodes not reachable from This.header in post have constant field values in pre and post
+	all p: Node {
+		p !in post.(This.header).*({ n: Node, m: Node | (n -> post -> m) in link}) implies ConstantFieldValues[p, pre, post]
+	}
+}
+
+run AddFrame for 2 State, 1 List, 3 Node, 2 int
+run Add for 2 State, 1 List, 3 Node, 2 int
+run RepOk for 1 State, 1 List, 3 Node, 2 int

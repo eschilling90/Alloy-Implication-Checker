@@ -1,0 +1,7 @@
+fact CardinalityConstraints {
+	all t: State {
+		{all l: List | lone t.(l.header)}
+		{all n: Node | lone t.(n.link)}
+		{all n: Node | one t.(n.elem)}
+	}
+}
