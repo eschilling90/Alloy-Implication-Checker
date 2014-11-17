@@ -1,0 +1,1 @@
+[{"all", ["all"]}, {"some",["some","one","all"]}, {"lone", ["lone","one","no"]}, {"no", ["no"]}, {"one",["one"]}]
