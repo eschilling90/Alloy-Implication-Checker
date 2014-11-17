@@ -14,6 +14,6 @@ public class Hasher {
 		possibleInsertions.removeAll(oldFile);
 		System.out.println(possibleDeletions);
 		System.out.println(possibleInsertions);
+		System.out.println("");
 	}
-
 }
