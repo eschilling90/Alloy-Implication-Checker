@@ -12,5 +12,9 @@ public class MainParser {
 		Hasher h = new Hasher();
 		
 		h.getDiff(f1.getAsserts(), f2.getAsserts());
+		
+		ChangeAnalyzer c = new ChangeAnalyzer();
+		
+		c.Analyze(h.possibleDeletions, h.possibleInsertions);
 	}
 }
