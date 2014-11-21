@@ -2,6 +2,7 @@ fact CardinalityConstraints {
 	all t: State {
 		{all l: List | lone t.(l.header)}
 		{all n: Node | lone t.(n.link)}
-		{lone n: Node | no t.(n.elem)}
+		{lone n: Node | one t.(n.elem)}
+		{all n: Node | lone t.(n.elem) and t.(n.elem) >= 2}
 	}
 }

@@ -1,14 +1,62 @@
-[
-{"all", ["all"],1,"match"},
-{"some",["some","one","all"],1,"match"},
-{"lone", ["lone","one","no"],1,"match"},
-{"no", ["no"],1,"match"},
-{"one",["one"],1,"match"},
-{">",[">",">="],2,[">=",">"]},
-{">=",[">=",">"],2,">="},
-{"==",["=="],2,"=="},
-{"<",["<","<="],2,["<=","<"]},
-{"<=",["<=","<"],2"<="]},
-{"!=",["!="],2,"=="]},
-{"in",["in"],2,"match"}
-]
+{
+	"all": {
+		"implies": ["all"],
+		"operands": 1,
+		"matches": ["exact"]
+	},
+	"some": {
+		"implies": ["some","one","all"],
+		"operands": 1,
+		"matches": ["exact","exact","exact"]
+	},
+	"lone": {
+		"implies": ["lone","one","no"],
+		"operands": 1,
+		"matches": ["exact","exact","exact"]
+	},
+	"no": {
+		"implies": ["no"],
+		"operands": 1,
+		"matches": ["exact"]
+	},
+	"one": {
+		"implies": ["one"],
+		"operands": 1,
+		"matches": ["exact"]
+	},
+	">": {
+		"implies": [">",">="],
+		"operands": 2,
+		"matches": [">=",">"]
+	},
+	">=": {
+		"implies": [">=",">"],
+		"operands": 2,
+		"matches": [">",">="]
+	},
+	"==": {
+		"implies": ["=="],
+		"operands": 2,
+		"matches": ["=="]
+	},
+	"<": {
+		"implies": ["<","<="],
+		"operands": 2,
+		"matches": ["<=","<"]
+	},
+	"<=": {
+		"implies": ["<=","<"],
+		"operands": 2,
+		"matches": ["<","<="]
+	},
+	"!=": {
+		"implies": ["!="],
+		"operands": 2,
+		"matches": ["=="]
+	},
+	"in": {
+		"implies": ["in"],
+		"operands": 2,
+		"matches": ["exact"]
+	}	
+}
