@@ -8,13 +8,9 @@ public class MainParser {
 	
 	
 	public static void main(String[] a) {
-<<<<<<< HEAD
 		final long startTime = System.currentTimeMillis();
-		Formatter f1 = new Formatter("test3.txt");
-=======
 		Formatter f1 = new Formatter("test2.txt");
->>>>>>> origin/master
-		Formatter f2 = new Formatter("test3Part2.txt");
+		Formatter f2 = new Formatter("test2Part2.txt");
 		f1.Format();
 		f2.Format();
 		

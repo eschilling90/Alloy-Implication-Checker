@@ -31,11 +31,19 @@ public class ChangeAnalyzer {
 	
 	public Integer operationsCounter(List<String> lines){
 		LineList lineList = listConstructor(lines);
-		return lineList.operatorList.size();
+		Integer sum = 0;
+		for(JSONObject operators: lineList.operatorList){
+			sum += operators.length();
+		}
+		return sum;
 	}
 	
 	public Integer operationsCounter(LineList lineList){
-		return lineList.operatorList.size();
+		Integer sum = 0;
+		for(JSONObject operators: lineList.operatorList){
+			sum += operators.length();
+		}
+		return sum;
 	}
 	
 	public LineList listConstructor(List<String> lines){
