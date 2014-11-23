@@ -245,6 +245,6 @@ public class ChangeAnalyzer {
 		System.out.println();
 		System.out.printf("Unmatchable Deleted lines: %s\n",possibleDeletions);
 		System.out.printf("Unmatchable Inserted lines: %s\n",possibleInsertions);
-		SMTMisses = operationsCounter(possibleInsertions) + operationsCounter(possibleDeletions);
+		SMTMisses = operationsCounter(possibleInsertions);
 	}
 }

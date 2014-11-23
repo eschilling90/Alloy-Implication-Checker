@@ -66,5 +66,5 @@ pred AddFrame(This: List, x: Int, pre: State, post: State) {
 }
 
 run AddFrame for 2 State, 1 List, 3 Node, 2 int
-run Add for 3 State, 1 List, 3 Node, 2 int
+run Add for 2 State, 1 List, 3 Node, 2 int
 run RepOk for 1 State, 1 List, 3 Node, 2 int
